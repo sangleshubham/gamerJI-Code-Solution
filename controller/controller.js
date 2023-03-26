@@ -21,7 +21,7 @@ export async function generateKeyPair(data) {
 export async function encryptValue(req, res) {
   const publicKey = await openpgp.readKey({ armoredKey: armoredPublicKey });
   const encrypted = await openpgp.encrypt({
-    message: await openpgp.createMessage({ text: req.body.value }), // input as Message object
+    message: await openpgp.createMessage({ text: JSON.stringify(req.body )}), // input as Message object
     encryptionKeys: publicKey,
   });
   res.status(200).send(encrypted);
@@ -42,5 +42,5 @@ export async function decryptValue(req, res) {
     decryptionKeys: privateKey,
   });
 
-  res.status(200).send(decrypted);
+  res.status(200).send(JSON.parse(decrypted));
 }
