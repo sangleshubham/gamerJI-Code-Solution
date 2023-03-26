@@ -1,4 +1,6 @@
 # gamerJI-Code-Solution
+Sample project to show how Public, private key encryption works in nodejs using openPGP.js.
+
 
 #### install library
 
